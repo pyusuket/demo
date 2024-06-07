@@ -1,0 +1,10 @@
+<h1>Hello</h1>
+<% @posts.each do |post| %>
+    <%= link_to post.title, post_path(post.id) %>
+    <%= post.body %><br>
+    <% if post.image.attached? %>
+      <%= image_tag post.image, size: "150x150" %><br>
+    <%else%>
+      <img src="http://placehold.jp/150x150"><br>
+    <%end%>
+<% end %>

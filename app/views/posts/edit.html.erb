@@ -1,0 +1,17 @@
+<h1>Hello</h1>
+
+<%= form_with model: @post, url: post_path, method: :patch do |f| %>
+  <div>
+    <%= f.label :title, "タイトル" %><br>
+    <%= f.text_field :title %>
+  </div>
+
+  <div>
+    <%= f.label :body, "本文" %><br>
+    <%= f.text_area :body %>
+  </div>
+
+  <div>
+    <%= f.submit "更新" %>
+  </div>
+<% end %>

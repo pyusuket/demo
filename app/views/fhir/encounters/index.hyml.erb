@@ -1,0 +1,13 @@
+<!-- app/views/encounters/index.html.erb -->
+
+<h1>Encounter一覧</h1>
+
+<ul>
+  <% @encounters.each do |encounter| %>
+    <li>
+      <strong>Encounter ID:</strong> <%= encounter.id %><br>
+      <strong>Status:</strong> <%= encounter.status %><br>
+      <!-- 他の情報も必要に応じて表示 -->
+    </li>
+  <% end %>
+</ul>

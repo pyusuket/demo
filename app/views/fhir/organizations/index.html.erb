@@ -1,0 +1,15 @@
+<h1>Organizations in Japan</h1>
+
+<ul>
+  <% @organizations.each do |organization| %>
+    <li>
+      <strong>Name:</strong> <%= organization.name %><br>
+      <% if organization.address.present? %>
+        <strong>Address:</strong> <%= organization.address.first.text %><br>
+      <% end %>
+      <% if organization.telecom.present? %>
+        <strong>Phone:</strong> <%= organization.telecom.first.value %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>

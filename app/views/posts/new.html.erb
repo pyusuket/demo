@@ -1,0 +1,41 @@
+<h1>Hello</h1>
+
+<%= form_with model: @post, url: posts_path, method: :post, id: 'post-form' do |f| %>
+  <div>
+    <%= f.label :title, "タイトル" %><br>
+    <%= f.text_field :title %>
+  </div>
+
+  <div>
+    <%= f.label :body, "本文" %><br>
+    <%= f.text_area :body %>
+  </div>
+
+  <div>
+    <%= f.label :images, "画像" %><br>
+    <%= f.file_field :image, accept: "image/*" %>
+  </div>
+
+  <div>
+    <%= f.label :address, "住所" %><br>
+    <%= f.text_field :address, id: 'address-input' %>
+  </div>
+
+  <div>
+    <%= f.submit "投稿" %>
+  </div>
+<% end %>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['PLACES_API_KEY'] %>&libraries=places"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var addressInput = document.getElementById('address-input');
+    var autocomplete = new google.maps.places.Autocomplete(addressInput);
+
+    // 選択された住所をフォームの住所フィールドにセット
+    google.maps.event.addListener(autocomplete, 'place_changed', function() {
+      var place = autocomplete.getPlace();
+      addressInput.value = place.formatted_address;
+    });
+  });
+</script>

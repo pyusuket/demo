@@ -1,0 +1,2 @@
+module Fhir::PatientsHelper
+end

@@ -1,0 +1,33 @@
+<h1>Patients</h1>
+<% if notice %>
+  <p><%= notice %></p>
+<% end %>
+<%= link_to 'New Patient', new_fhir_patient_path, class: 'btn btn-primary' %>
+
+<ul>
+  <% @patients.each do |patient| %>
+    <li>
+      <% if patient.name.present? %>
+        <% patient_name = patient.name.first %>
+        <%= "#{patient_name.family}, #{patient_name.given.join(' ')}" %>
+      <% else %>
+        No name available for this patient
+      <% end %>
+      <ul>
+        <li><strong>ID:</strong> <%= patient.id %></li>
+        <li><strong>Gender:</strong> <%= patient.gender.present? ? patient.gender : "Unknown" %></li>
+        <li><strong>Birth Date:</strong> <%= patient.birthDate.present? ? patient.birthDate : "Unknown" %></li>
+        <% if patient.address.present? %>
+          <li><strong>Address:</strong> <%= patient.address.first.line.join(', ') %>, <%= patient.address.first.city %>, <%= patient.address.first.state %>, <%= patient.address.first.postalCode %>, <%= patient.address.first.country %></li>
+        <% else %>
+          <li><strong>Address:</strong> Unknown</li>
+        <% end %>
+        <% if patient.telecom.present? %>
+          <li><strong>Contact:</strong> <%= patient.telecom.first.value %></li>
+        <% else %>
+          <li><strong>Contact:</strong> Unknown</li>
+        <% end %>
+      </ul>
+    </li>
+  <% end %>
+</ul>
